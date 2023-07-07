@@ -1,6 +1,6 @@
 # ignore all except .gitignore and .zshrc
 
-/*
+/**
 !.gitignore
 !.zshrc
 !README.md
