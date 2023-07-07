@@ -147,6 +147,10 @@ alias flr="flatpak remove --noninteractive -y"
 alias fr="flatpak repair"
 alias fl="flatpak list"
 
+# Docker
+alias dcu="docker-compose up"
+alias dcu-clean="sudo lsof -i :5432 | tail -n +2 | awk '{print $2}' | xargs -I{} sudo kill {} && sudo lsof -i :6379 | tail -n +2 | awk '{print $2}' | xargs -I{} sudo kill {} && docker-compose up"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
 
