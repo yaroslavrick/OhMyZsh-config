@@ -197,3 +197,6 @@ alias rubymine="sh /home/yaroslav-fedora-pc/.local/share/JetBrains/Toolbox/apps/
 # Fly.io
 export FLYCTL_INSTALL_DIR="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL_DIR/bin:$PATH"
+
+# To reboot zshrc after changes:
+# source ~/.zshrc
