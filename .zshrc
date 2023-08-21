@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -14,7 +21,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="nebirhos"
 # ZSH_THEME="eastwood"
-ZSH_THEME="josh"
+# ZSH_THEME="josh"
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir newline vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time ram time)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -137,6 +149,14 @@ alias rs="rails s"
 alias rc="rails c"
 alias bd="bin/dev"
 alias besqd="bundle exec sidekiq -q default"
+alias rdc='rails db:create'
+alias rdm='rails db:migrate'
+alias rds='rails db:seed'
+alias rdd='rails db:drop'
+alias rdcms='rails db:create && rails db:migrate&& rails db:seed'
+alias droptest='RAILS_ENV=test rails db:drop && RAILS_ENV=test rails db:create && RAILS_ENV=test rails db:migrate'
+alias rswag='rails swag'
+
 # Gnome Text Editor
 alias gte="gnome-text-editor"
 alias sgte="sudo gnome-text-editor"
@@ -167,3 +187,13 @@ DB_PASSWORD=postgres
 
 # Postgres
 export PATH=${PATH}:/usr/pgsql-15
+
+# Rubymine
+alias rubymine="sh /home/yaroslav-fedora-pc/.local/share/JetBrains/Toolbox/apps/rubymine/bin/rubymine.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Fly.io
+export FLYCTL_INSTALL_DIR="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL_DIR/bin:$PATH"
