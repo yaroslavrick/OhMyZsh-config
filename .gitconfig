@@ -1,0 +1,75 @@
+[user]
+	email = yaroslavrick@gmail.com
+	name = Yaroslav
+[safe]
+	directory = /mnt/sdb2/projects/epam/RUBY_LAB/epam_music/epam_music_api
+	directory = /mnt/sdb2/projects*
+[core]
+	# editor = rubymine --wait
+    editor = code-insiders --wait
+[init]
+	defaultBranch = main
+
+# # Comment: Start of "Extra Block"
+# # Comment: This is to unlock Visual Studio Code as your Git diff and Git merge tool
+[merge]
+    tool = vscode
+[mergetool "vscode"]
+# Comment: Original way before three-way merge shown commented out
+   cmd = code-insiders --wait $MERGED
+# Comment: For "Three-way merge"
+    # cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
+[diff]
+    # tool = rubymine
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code-insiders --wait --diff $LOCAL $REMOTE
+    # cmd = rubymine --wait --diff $LOCAL $REMOTE
+# Comment: End of "Extra Block"
+
+[alias]
+    # List things
+    tags = "tag -l"
+    branches = "branch -a"
+    remotes = "remote -v"
+
+    # Shorten common commands
+    co = "checkout"
+    st = "status"
+    br = "branch"
+    ci = "commit"
+    d = "diff"
+
+    # Log that shows titles of last 16 commits
+    l = "log -16 --color=always --all --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
+    # Log that starts a pager with titles of all the commits in your tree
+    ll = log --color=always --all --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+    # Log that shows the last 10 commits as a graph
+    lg = "log -10 --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
+    # Log that shows all commits as a graph (using a pager)
+    lgl = "log --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+    # Show outgoing commits
+    out = "log @{u}.."
+
+    # Print the title of the current branch; sometimes useful for scripting
+    currentbranch = "!git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2"
+
+    # Better diffs for prose
+    wdiff = "diff --color-words"
+
+    # Safer pulls; don't do anything other than a fast forward on merge
+    pull = "pull --ff-only"
+
+    # Amend last commit without modifying commit message
+    amend = "!git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
+
+    # Create a commit that will be automatically squashed as a fixup when you
+    # run `git rebase --autosquash`
+    fixup = "commit --fixup=HEAD"
+[color]
+	ui = true
