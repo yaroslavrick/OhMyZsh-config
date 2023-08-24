@@ -21,9 +21,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="nebirhos"
 # ZSH_THEME="eastwood"
-# ZSH_THEME="josh"
+ZSH_THEME="josh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir newline vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time ram time)
@@ -121,11 +121,17 @@ source $ZSH/oh-my-zsh.sh
 # ALIASES:
 
 # DNF
-alias update="sudo dnf makecache --refresh && sudo dnf upgrade --refresh -y && flatpak update -y"
-alias clean="sudo dnf autoremove -y && dnf clean all && flatpak uninstall --unused -y && sudo journalctl --vacuum-time=1weeks"
-alias dnfr="sudo dnf autoremove"
-alias dnfs="dnf search"
-alias dnfi="sudo dnf install"
+# alias update="sudo dnf makecache --refresh && sudo dnf upgrade --refresh -y && flatpak update -y"
+# alias clean="sudo dnf autoremove -y && dnf clean all && flatpak uninstall --unused -y && sudo journalctl --vacuum-time=1weeks"
+# alias dnfr="sudo dnf autoremove"
+# alias dnfs="dnf search"
+# alias dnfi="sudo dnf install"
+
+# Ubuntu
+alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y && flatpak update -y && sudo snap refresh"
+alias clean="sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y && sudo journalctl --vacuum-time=1weeks"
+alias apti="sudo apt update && sudo apt install"
+# alias update-snap="sudo snap refresh"
 
 # Github
 alias up="cd .."
@@ -189,7 +195,7 @@ DB_PASSWORD=postgres
 export PATH=${PATH}:/usr/pgsql-15
 
 # Rubymine
-alias rubymine="sh /home/yaroslav-fedora-pc/.local/share/JetBrains/Toolbox/apps/rubymine/bin/rubymine.sh"
+alias rubymine="sh $HOME/.local/share/JetBrains/Toolbox/apps/rubymine/bin/rubymine.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
