@@ -154,6 +154,7 @@ alias rswag='bundle exec rails swag'
 alias droptestdb='rails db:environment:set RAILS_ENV=test && rails db:drop db:create db:migrate RAILS_ENV=test'
 alias rspec='bundle exec rspec'
 alias rubocop='bundle exec rubocop'
+alias capybara='bundle exec rspec --require capybara_helper'
 
 # Gnome Text Editor
 alias gte="gnome-text-editor"
