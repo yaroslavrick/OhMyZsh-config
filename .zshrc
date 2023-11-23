@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -22,11 +15,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="nebirhos"
 # ZSH_THEME="eastwood"
 ZSH_THEME="josh"
-
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir newline vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time ram time)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -89,7 +77,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git rvm ruby rails z zsh-autosuggestions zsh-syntax-highlighting)
-plugins=(git rbenv ruby rails rake z zsh-autosuggestions node zsh-syntax-highlighting emotty emoji dnf vscode sudo git-flow)
+plugins=(git rbenv ruby rails rake z zsh-autosuggestions node zsh-syntax-highlighting emotty emoji vscode git-flow)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -128,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # alias dnfi="sudo dnf install"
 
 # Ubuntu
-alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y && flatpak update -y && sudo snap refresh"
+alias update="sudo apt-get clean && sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y && flatpak update -y && sudo snap refresh"
 alias clean="sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y && sudo journalctl --vacuum-time=1weeks"
 alias apti="sudo apt update && sudo apt install"
 # alias update-snap="sudo snap refresh"
@@ -152,6 +140,7 @@ alias gpho="git push origin"
 
 # Rails
 alias rs="rails s"
+alias rsp="rails assets:precompile && rails s"
 alias rc="rails c"
 alias bd="bin/dev"
 alias besqd="bundle exec sidekiq -q default"
@@ -161,7 +150,10 @@ alias rds='rails db:seed'
 alias rdd='rails db:drop'
 alias rdcms='rails db:create && rails db:migrate&& rails db:seed'
 alias droptest='RAILS_ENV=test rails db:drop && RAILS_ENV=test rails db:create && RAILS_ENV=test rails db:migrate'
-alias rswag='rails swag'
+alias rswag='bundle exec rails swag'
+alias droptestdb='rails db:environment:set RAILS_ENV=test && rails db:drop db:create db:migrate RAILS_ENV=test'
+alias rspec='bundle exec rspec'
+alias rubocop='bundle exec rubocop'
 
 # Gnome Text Editor
 alias gte="gnome-text-editor"
@@ -174,8 +166,16 @@ alias fr="flatpak repair"
 alias fl="flatpak list"
 
 # Docker
+# alias dcu-clean="sudo lsof -i :5432 && sudo kill $(sudo lsof -ti :5432) && docker-compose up"
+# To run docker-compose and kill postgres if it's running:
+# "sudo kill $(sudo lsof -ti :5432) && docker-compose up"
+# alias dcu="docker-compose up --build --detach"
 alias dcu="docker-compose up"
-alias dcu-clean="sudo lsof -i :5432 | tail -n +2 | awk '{print $2}' | xargs -I{} sudo kill {} && sudo lsof -i :6379 | tail -n +2 | awk '{print $2}' | xargs -I{} sudo kill {} && docker-compose up"
+
+# To terminate docker-compose and kill postgres if it's running:
+alias dcd="docker-compose down"
+
+alias dei="docker exec -it"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
@@ -197,12 +197,12 @@ export PATH=${PATH}:/usr/pgsql-15
 # Rubymine
 alias rubymine="sh $HOME/.local/share/JetBrains/Toolbox/apps/rubymine/bin/rubymine.sh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Fly.io
 export FLYCTL_INSTALL_DIR="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL_DIR/bin:$PATH"
 
 # To reboot zshrc after changes:
 # source ~/.zshrc
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

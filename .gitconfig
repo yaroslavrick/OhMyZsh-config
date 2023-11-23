@@ -4,6 +4,15 @@
 [safe]
 	directory = /mnt/sdb2/projects/epam/RUBY_LAB/epam_music/epam_music_api
 	directory = /mnt/sdb2/projects*
+	directory = /mnt/sdb2/projects/softserve/ruby_course/course_project/finance_app
+	directory = /mnt/sdb2/projects/epam/RUBY_LAB/howework/car_advertisements_web
+	directory = /mnt/sdb2/projects/test_tasks/ruby/technical-task-for-bored-juniors
+	directory = /mnt/sdb2/projects/test_tasks/ruby/api-wrapper
+	directory = /mnt/sdb2/projects/epam/RUBY_LAB/epam_music/epam_music_app
+	directory = /mnt/sdb2/projects/github_searcher_by_nickname
+	directory = /mnt/sdb2/projects/useful_staff
+	directory = /mnt/sdb2/projects/telegram-bot/wardy_bot
+	directory = /mnt/sdb2/projects/epam/RUBY_LAB/epam_music/epam-singers
 [core]
 	# editor = rubymine --wait
     editor = code-insiders --wait
