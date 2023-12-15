@@ -154,6 +154,8 @@ alias rswag='bundle exec rails swag'
 alias droptestdb='rails db:environment:set RAILS_ENV=test && rails db:drop db:create db:migrate RAILS_ENV=test'
 alias rspec='bundle exec rspec'
 alias rubocop='bundle exec rubocop'
+# alias for "foreman start -f Procfile.dev":
+alias fmsd="foreman start -f Procfile.dev"
 
 # Gnome Text Editor
 alias gte="gnome-text-editor"
@@ -176,6 +178,7 @@ alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 
 alias dei="docker exec -it"
+alias dea="docker-compose exec app sh "
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
